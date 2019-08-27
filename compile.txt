@@ -1,0 +1,4 @@
+avrdude -cavrisp -p t85 -P /dev/ttyACM0 -U lfuse:r:-:i -b19200
+avr-gcc -Wall -g -Os -mmcu=attiny85 -o blink.bin blink.c
+avr-objcopy -j .text -j .data -O ihex blink.bin blink.hex
+avrdude -cavrisp -p t85 -P /dev/ttyACM0 -U flash:w:blink.hex:i -b19200
